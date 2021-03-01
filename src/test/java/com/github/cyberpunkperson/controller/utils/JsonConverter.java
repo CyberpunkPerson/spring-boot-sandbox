@@ -1,4 +1,4 @@
-package com.github.cyberpunkperson.controller.util;
+package com.github.cyberpunkperson.controller.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;

@@ -1,5 +1,7 @@
 package com.github.cyberpunkperson.domain;
 
+import com.github.cyberpunkperson.config.cache.CacheKey;
+import com.github.cyberpunkperson.config.cache.CacheKeyOperation;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -19,13 +21,14 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "orders")
-public class Order {
+public class Order implements CacheKey {
 
     @Id
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID id;
 
+    @CacheKeyOperation.Exclude
     private String title;
 
     private String description;
@@ -34,6 +37,7 @@ public class Order {
 
     private Double price;
 
+    @CacheKeyOperation.Exclude
     private ZonedDateTime createdDate;
 
 }

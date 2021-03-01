@@ -12,11 +12,28 @@ spring:
         jdbc:
           batch_size: 10
           generate_statistics: true
-    datasource:
-      url: jdbc:h2:mem:order-cacheable
-      driverClassName: org.h2.Driver
-      username: ${sandbox.datasource.username}
-      password: ${sandbox.datasource.password}
-    h2:
-      console:
-        enabled: true
+  datasource:
+    url: jdbc:h2:mem:sandbox
+    driverClassName: org.h2.Driver
+    username: ${sandbox.datasource.username}
+    password: ${sandbox.datasource.password}
+  h2:
+    console:
+      enabled: true
+  cache:
+    dynamo:
+      caches:
+        - name: order-cache
+          ttl: PT1H
+          flushOnBoot: true
+
+cloud:
+  aws:
+    credentials:
+      accessKey: ${aws.access-key}
+      secretKey: ${aws.secret-key}
+    region:
+      auto: false
+      static: eu-west-2
+    stack:
+      auto: false

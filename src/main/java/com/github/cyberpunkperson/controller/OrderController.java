@@ -17,12 +17,12 @@ public class OrderController {
 
 
     @PostMapping
-    public Order save(Order order) {
+    public Order save(@RequestBody Order order) {
         return orderService.save(order);
     }
 
     @PutMapping
-    public Order update(Order order) {
+    public Order update(@RequestBody Order order) {
         return orderService.save(order);
     }
 
@@ -41,4 +41,9 @@ public class OrderController {
         orderService.deleteById(orderId);
     }
 
+
+    @GetMapping("/hash")
+    public Order findByHash(@RequestBody Order order) {
+        return orderService.findByHash(order);
+    }
 }

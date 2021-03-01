@@ -18,6 +18,14 @@
 
     <properties>
         <java.version>15</java.version>
+
+        <!--Cache-->
+        <jedis.version>3.5.1</jedis.version>
+        <spring-cloud-aws.version>2.2.6.RELEASE</spring-cloud-aws.version>
+
+        <!--Common-->
+        <guava.version>20.0</guava.version>
+        <commons-lang3.version>3.11</commons-lang3.version>
     </properties>
 
 
@@ -40,6 +48,18 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!--Cache-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-dynamodb</artifactId>
+            <version>1.11.959</version>
+        </dependency>
+
         <!--Test-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -58,6 +78,18 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.version}</version>
         </dependency>
     </dependencies>
 
