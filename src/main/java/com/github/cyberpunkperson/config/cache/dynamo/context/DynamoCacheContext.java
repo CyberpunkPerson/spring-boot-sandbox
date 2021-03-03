@@ -1,6 +1,6 @@
 package com.github.cyberpunkperson.config.cache.dynamo.context;
 
-import com.github.cyberpunkperson.config.cache.dynamo.keygenerator.DynamoCacheKey;
+import com.fasterxml.jackson.databind.JavaType;
 import com.github.cyberpunkperson.config.cache.dynamo.repository.DynamoCacheRepository;
 import org.springframework.lang.Nullable;
 
@@ -10,9 +10,9 @@ public interface DynamoCacheContext {
 
     DynamoCacheRepository getNativeCache();
 
-    <TargetType> Optional<TargetType> get(String cacheName, String key, Class<TargetType> targetType);
+     Optional<Object> get(String cacheName, String key, JavaType targetType);
 
-    void put(String cacheName, DynamoCacheKey key, @Nullable Object value);
+    void put(String cacheName, String key, @Nullable Object value);
 
     void evict(String cacheName, String key);
 

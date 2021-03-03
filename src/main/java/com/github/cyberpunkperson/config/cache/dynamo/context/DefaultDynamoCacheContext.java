@@ -1,7 +1,7 @@
 package com.github.cyberpunkperson.config.cache.dynamo.context;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.github.cyberpunkperson.config.cache.dynamo.keygenerator.DynamoCacheKey;
+import com.fasterxml.jackson.databind.JavaType;
 import com.github.cyberpunkperson.config.cache.dynamo.mapper.DynamoCacheMapper;
 import com.github.cyberpunkperson.config.cache.dynamo.repository.DynamoCacheRepository;
 import lombok.Builder;
@@ -37,7 +37,7 @@ public class DefaultDynamoCacheContext implements DynamoCacheContext {
     }
 
     @Override
-    public <TargetType> Optional<TargetType> get(String cacheName, String key, Class<TargetType> targetType) {
+    public Optional<Object> get(String cacheName, String key, JavaType targetType) {
         hasText(cacheName, "Cache name must not be null or empty string");
         hasText(key, "Cache key must not be null or empty string");
 
@@ -46,9 +46,9 @@ public class DefaultDynamoCacheContext implements DynamoCacheContext {
     }
 
     @Override
-    public void put(String cacheName, DynamoCacheKey key, @Nullable Object value) {
+    public void put(String cacheName, String key, @Nullable Object value) {
         hasText(cacheName, "Cache name must not be null or empty string");
-        cacheRepository.put(cacheName, getPutAttributes(key.getCacheKey(), value));
+        cacheRepository.put(cacheName, getPutAttributes(key, value));
     }
 
     private Map<String, AttributeValue> getPutAttributes(String key, Object value) {

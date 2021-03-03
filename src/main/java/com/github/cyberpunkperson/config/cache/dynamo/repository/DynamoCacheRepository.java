@@ -8,7 +8,6 @@ import java.util.Map;
 
 public interface DynamoCacheRepository {
 
-
     AmazonDynamoDB getNativeCacheRepository();
 
     void put(String cacheName, Map<String, AttributeValue> attributes);

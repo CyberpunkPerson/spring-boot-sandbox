@@ -1,6 +1,7 @@
 package com.github.cyberpunkperson.config.cache.dynamo.mapper;
 
 import com.amazonaws.services.dynamodbv2.model.AttributeValue;
+import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -17,7 +18,7 @@ public class ByteDynamoCacheMapper implements DynamoCacheMapper {
 
     @Override
     @SneakyThrows
-    public <TargetType> TargetType deserialize(AttributeValue value, Class<TargetType> targetType) {
+    public <TargetType> TargetType deserialize(AttributeValue value, JavaType targetType) {
         return objectMapper.readValue(value.getB().array(), targetType);
     }
 

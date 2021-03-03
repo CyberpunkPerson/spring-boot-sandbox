@@ -72,7 +72,7 @@ public class DynamoCache implements Cache {
     @Override
     public void put(Object key, Object value) {
         isTrue(key instanceof DynamoCacheKey, "'key' must be an instance of '%s'".formatted(DynamoCacheKey.class.getName()));
-        this.context.put(cacheName, (DynamoCacheKey) key, value);
+        this.context.put(cacheName, ((DynamoCacheKey) key).getCacheKey(), value);
     }
 
     @Override

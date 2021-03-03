@@ -113,7 +113,8 @@ public class OrderControllerTest {
         assertEquals(publishedOrder, foundByHashFromDatabase);
 
         Order foundByHashFromCache = cacheManager.getCache("order-cache")
-                .get(new SimpleDynamoCacheKey(publishedOrder.buildCacheKey(), publishedOrder.getClass()),
+                .get(new SimpleDynamoCacheKey(publishedOrder.buildCacheKey(),
+                                jsonConverter.constructType(publishedOrder.getClass())),
                         publishedOrder.getClass());
 
         assertEquals(publishedOrder, foundByHashFromCache);
@@ -147,7 +148,8 @@ public class OrderControllerTest {
 
         cacheManager.getCache("order-cache").clear();
         assertNull(cacheManager.getCache("order-cache")
-                .get(new SimpleDynamoCacheKey(publishedOrder.buildCacheKey(), publishedOrder.getClass()),
+                .get(new SimpleDynamoCacheKey(publishedOrder.buildCacheKey(),
+                                jsonConverter.constructType(publishedOrder.getClass())),
                         publishedOrder.getClass()));
     }
 

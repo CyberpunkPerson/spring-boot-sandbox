@@ -36,6 +36,11 @@ public class DynamoCacheConfig {
         return cacheManager;
     }
 
+    @Bean
+    public CacheManager caffeineCacheMannager() {
+        return new SimpleCacheManager();
+    }
+
     private List<DynamoCache> buildCaches() {
 
         return dynamoCacheDescriptor.getCaches().stream()
